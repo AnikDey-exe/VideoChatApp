@@ -2,8 +2,8 @@ const socket = io("/");
 
 var peer = new Peer(undefined, {
     path: "/peerjs",
-    host: "localhost",
-    port: 3030,
+    host: "/",
+    port: "443",
 });
 
 const user = prompt("Enter your name");
