@@ -84,17 +84,17 @@ $(function () {
         } else {
             myStream.getAudioTracks()[0].enabled = true;
             let html = `<i class="fas fa-microphone"></i>`; 
-            $("#mute_button").toggleClass("background_white"); 
+            $("#mute_button").toggleClass("options_button"); 
             $("#mute_button").html(html);
         }
     })
 
-    $("stop_video").click(function () {
+    $("#stop_video").click(function () {
         const enabled = myStream.getVideoTracks()[0].enabled;
         if(enabled) {
             myStream.getVideoTracks()[0].enabled = false;
             let html = `<i class="fas fa-video-slash"></i>`; 
-            $("#stop_video").toggleClass("background_red"); 
+            $("#stop_video").toggleClass("options_button"); 
             $("#stop_video").html(html);
         } else {
             myStream.getVideoTracks()[0].enabled = true;
