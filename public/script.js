@@ -84,7 +84,7 @@ $(function () {
         } else {
             myStream.getAudioTracks()[0].enabled = true;
             let html = `<i class="fas fa-microphone"></i>`; 
-            $("#mute_button").toggleClass("options_button"); 
+            $("#mute_button").toggleClass("background_red"); 
             $("#mute_button").html(html);
         }
     })
@@ -94,12 +94,12 @@ $(function () {
         if(enabled) {
             myStream.getVideoTracks()[0].enabled = false;
             let html = `<i class="fas fa-video-slash"></i>`; 
-            $("#stop_video").toggleClass("options_button"); 
+            $("#stop_video").toggleClass("background_red"); 
             $("#stop_video").html(html);
         } else {
             myStream.getVideoTracks()[0].enabled = true;
             let html = `<i class="fas fa-video"></i>`; 
-            $("#stop_video").toggleClass("background_white"); 
+            $("#stop_video").toggleClass("background_red"); 
             $("#stop_video").html(html);
         }
     })
