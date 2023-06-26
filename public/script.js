@@ -103,6 +103,28 @@ $(function () {
             $("#stop_video").html(html);
         }
     })
+
+    $("#invite_button").click(function() {
+        const to = prompt("Enter the email of who you want to invite: ")
+        let data = {
+            url: window.location.href,
+            to: to
+        }
+        $.ajax({
+            url: '/send-email',
+            type: 'post',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function(result) {
+                alert("Invite sent!")
+            },
+            error: function(result) {
+                console.log(result.responseJSON)
+                alert("Failed to send invite.")
+            }
+        })
+    })
 })
 
 peer.on("open", (id) => {
@@ -113,8 +135,9 @@ peer.on("open", (id) => {
 socket.on("createMessage", (message, username) => {
     $(".messages").append(`
         <div class="message">
-            <b><i class="far fa-user-circle"></i><span>${username === user?"Me":username}</span></b>
+            <b><i class="far fa-user-circle"></i><span>${username === user ? "Me": username}</span></b>
             <span>${message}</span>
         </div>
     `)
 });
+

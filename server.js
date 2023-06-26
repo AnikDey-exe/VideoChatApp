@@ -5,6 +5,17 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 const { v4: uuidv4 } = require("uuid");
+var nodemailer = require('nodemailer')
+
+const transporter = nodemailer.createTransport({
+    port: 587,
+    host: 'smtp.gmail.com',
+    auth: {
+        user: 'udoe162@gmail.com',
+        pass: 'user12345!'
+    },
+    secure: true
+})
 
 const io = require("socket.io")(server, {
     cors: {
@@ -26,6 +37,29 @@ app.get("/", (req, res) => {
 app.get("/:room", (req, res) => {
     res.render("index", { roomId: req.params.room });
 });
+
+app.post("/send-email", (req, res) => {
+    const to = req.body.to;
+    const url = req.body.url;
+
+    const mailData = {
+        from: 'udoe162@gmail.com',
+        to: to,
+        subject: 'Join my meeting now!',
+        html: '<p> Hey there, </p> <p> Come and join my meeting! </p>'
+    };
+
+    transporter.sendMail(mailData, (err, info) => {
+        if(err) {
+            return console.log('error')
+        }
+
+        res.status(200).send({
+            message: 'Sent',
+            message_id: info.messageId
+        })
+    })
+})
 
 io.on("connection", (socket) => {
     socket.on("join-room", (roomId, userId, username) => {
