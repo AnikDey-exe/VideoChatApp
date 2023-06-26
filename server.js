@@ -8,11 +8,11 @@ const { v4: uuidv4 } = require("uuid");
 var nodemailer = require('nodemailer')
 
 const transporter = nodemailer.createTransport({
-    port: 587,
+    port: 465,
     host: 'smtp.gmail.com',
     auth: {
-        user: 'udoe162@gmail.com',
-        pass: 'user12345!'
+        user: '',
+        pass: ''
     },
     secure: true
 })
@@ -39,14 +39,14 @@ app.get("/:room", (req, res) => {
 });
 
 app.post("/send-email", (req, res) => {
-    const to = req.body.to;
+    const toEmail = req.body.to;
     const url = req.body.url;
 
     const mailData = {
         from: 'udoe162@gmail.com',
-        to: to,
+        to: toEmail,
         subject: 'Join my meeting now!',
-        html: '<p> Hey there, </p> <p> Come and join my meeting! </p>'
+        html: `<p> Hey there, </p> <p> Come and join my meeting! ${url} </p>`
     };
 
     transporter.sendMail(mailData, (err, info) => {

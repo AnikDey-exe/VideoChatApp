@@ -105,10 +105,10 @@ $(function () {
     })
 
     $("#invite_button").click(function() {
-        const to = prompt("Enter the email of who you want to invite: ")
+        const toEmail = prompt("Enter the email of who you want to invite: ")
         let data = {
             url: window.location.href,
-            to: to
+            to: toEmail
         }
         $.ajax({
             url: '/send-email',
