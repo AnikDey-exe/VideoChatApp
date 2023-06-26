@@ -11,8 +11,8 @@ const transporter = nodemailer.createTransport({
     port: 465,
     host: 'smtp.gmail.com',
     auth: {
-        user: '',
-        pass: ''
+        user: 'udoe162@gmail.com',
+        pass: 'user12345!'
     },
     secure: true
 })
@@ -44,7 +44,7 @@ app.post("/send-email", (req, res) => {
 
     const mailData = {
         from: 'udoe162@gmail.com',
-        to: toEmail,
+        to: 'deyanik2007@gmail.com',
         subject: 'Join my meeting now!',
         html: `<p> Hey there, </p> <p> Come and join my meeting! ${url} </p>`
     };
